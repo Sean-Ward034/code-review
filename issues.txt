@@ -1,0 +1,39 @@
+main.h line 1: Missing header guard.
+main.h line 2: Missing inclusion of stdio.h for FILE type.
+main.h line 4: Function names should follow mixed-case format.
+main.h line 5: Function names should follow mixed-case format.
+main.h line 8: Function names should follow mixed-case format.
+main.h line 11: Function names should follow mixed-case format.
+
+Base64.c line 7: Pos function should follow mixed-case naming convention.
+Base64.c line 12: Comment before Base64Encode function missing.
+Base64.c line 16: Function name should follow mixed-case format (Base64Encode).
+Base64.c line 35: Comment before TokenDecode function missing.
+Base64.c line 36: Comment missing at start of TokenDecode function.
+Base64.c line 51: Function name should follow mixed-case format (Base64Decode).
+Base64.c line 56: Comment before Base64Decode function missing.
+Base64.c: All lines exceeding 80 characters should be reformatted.
+Base64.c line 13: Include `const` keyword where applicable (e.g., in `base64_chars`).
+
+main.c line 6: MAX_FILE_SIZE should follow macro naming convention.
+main.c line 7: Usage function name should follow mixed-case naming convention.
+main.c line 10: Include comment describing the purpose of the MAX_FILE_SIZE macro.
+main.c line 16: Main function comment missing.
+main.c line 25: Comment missing for direction, type, and filename variables.
+main.c line 34: Use '\0' instead of 0 for null termination.
+main.c line 43: Include a comment explaining the purpose of the fopen call.
+main.c line 55: Function name should follow mixed-case format (Base64Encode).
+main.c line 59: Function name should follow mixed-case format (Base64Decode).
+main.c line 70: Comment missing to explain file closure or lack of fclose.
+main.c: Ensure all functions are properly commented (main, usage, etc.).
+main.c: All conditionals (if/else) should have braces, even for single-line statements.
+
+uu.c line 9: Macro names should be in uppercase (ENC, DEC).
+uu.c line 11: Function name should follow mixed-case format (Encode).
+uu.c line 15: Register keyword is deprecated; avoid using it.
+uu.c line 70: Function name should follow mixed-case format (Decode).
+uu.c line 72: Comment missing before Decode function.
+uu.c line 100 and following: Indentation should use 4 spaces consistently.
+uu.c line 130: Remove redundant ferror check.
+uu.c line 135: Missing comment for variable declarations inside Decode.
+uu.c: All lines exceeding 80 characters should be reformatted.

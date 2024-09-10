@@ -1,11 +1,16 @@
-/* base64 functions */
-char *base64_encode(const void *data, int size);
-char *base64_decode(const char *str);
+#ifndef CODE_REVIEW_MAIN_H
+#define CODE_REVIEW_MAIN_H
 
-/* uuencode functions */
-void encode (FILE *fp);
+#include <stdio.h>  // Include stdio.h for FILE type
 
-/* uudecode functions */
-int decode (char *filename, FILE *fpin);
+/* Base64 functions */
+char *Base64Encode(const void *data, int size);
+char *Base64Decode(const char *str);
 
+/* UUencode functions */
+void Encode(FILE *fp);
 
+/* UUdecode functions */
+int Decode(char *filename, FILE *fpin);
+
+#endif /* CODE_REVIEW_MAIN_H */
