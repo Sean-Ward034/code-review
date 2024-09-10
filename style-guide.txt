@@ -1,0 +1,348 @@
+# Style Guide
+This is a style guide for the cs 340 code review assignment. The items in this guide
+are mostly copied from the Google open source C++ style guide. This is a
+small subset of that guide.
+
+Google states that "the goal of this guide is to manage this complexity 
+by describing in detail the dos and don'ts of writing C++ code . These 
+rules exist to keep the code base manageable while still allowing coders 
+to use C++ language features productively."
+
+The style guide targets the reader of the code more than the writer
+
+
+1. files
+In general, every .c or .cc file should have an associated .h file. 
+There are some common exceptions, such as unit tests and small .c or .cc 
+files containing just a main() function.
+Correct use of header files can make a huge difference to the readability, 
+size and performance of your code. 
+
+
+2. file protection
+All header files should have #define guards to prevent multiple inclusion. 
+The format of the symbol name should be <PROJECT>_<PATH>_<FILE>_H_. 
+
+To guarantee uniqueness, they should be based on the full path in a project's 
+source tree. For example, the file foo/src/bar/baz.h in project foo should 
+have the following guard: 
+
+#ifndef FOO_BAR_BAZ_H_
+#define FOO_BAR_BAZ_H_
+...
+#endif  // FOO_BAR_BAZ_H_
+
+The file uu.h in the code review project should be:
+#ifndef CODE_REVIEW_UU_H 
+#define CODE_REVIEW_UU_H
+...
+#endif  /* CODE_REVIEW_UU_H */ 
+
+
+3. null
+Use '\0' for null chars (and not the 0 literal). 
+
+
+The next few items involve naming.
+The most important consistency rules are those that govern naming. The style of a name immediately informs us what 
+sort of thing the named entity is: a type, a variable, a function, a constant, a macro, etc., without requiring us 
+to search for the declaration of that entity. The pattern-matching engine in our brains relies a great deal on these 
+naming rules. Naming rules are pretty arbitrary, but we feel that consistency is more important than individual 
+preferences in this area, so regardless of whether you find them sensible or not, the rules are the rules. Note 
+that certain universally-known abbreviations are OK, such as i for an iteration variable and T for a template parameter. 
+
+4. file names 
+Filenames should be all lowercase and can include underscores (_) or dashes (-).
+Follow the convention that your project uses. If there is no consistent 
+local pattern to follow, prefer "_". 
+
+Examples of acceptable file names: 
+
+    my_useful_class.c
+
+    my-useful-class.c 
+
+    myusefulclass.cc 
+
+C++ files should end in .cc, C files should end in .c, and header files 
+should end in .h. 
+
+
+5. variable names
+The names of variables (including function parameters) and data members are 
+all lowercase, with underscores between words. 
+
+Common Variable names 
+
+For example: 
+
+std::string table_name;  // OK - lowercase with underscore. 
+std::string tableName;   // Bad - mixed case.  
+
+
+6. Function Names 
+Regular functions have mixed case; accessors and mutators may be named like variables. 
+
+Ordinarily, functions should start with a capital letter and have a capital letter for each new word. 
+
+AddTableEntry()
+DeleteUrl()
+OpenFileOrDie()  
+
+
+7. macro names 
+Macro names should be named with all capitals and underscores. 
+
+#define ROUND(x)
+#define PI_ROUNDED 3. 
+
+
+8. Comments
+Comments are absolutely vital to keeping our code readable. The following rules describe what you should 
+comment and where. But remember: while comments are very important, the best code is self-documenting. 
+Giving sensible names to types and variables is much better than using obscure names that you must then 
+explain through comments. 
+
+When writing your comments, write for your audience: the next contributor who will need to understand 
+your code. Be generous, the next one may be you! 
+
+Comment Style 
+
+Use either the // or /* */ syntax, as long as you are consistent. 
+
+You can use either the // or the /* */ syntax; 
+Be consistent with how you comment and what style you use where. 
+
+Multi-line comments look like one of the following:
+
+/* 
+ * Multi-line comments look like this.  Make them real sentences. 
+ * Fill them so they look like real paragraphs.
+ */
+
+// 
+// Multi-line comments look like this.  Make them real sentences. 
+// Fill them so they look like real paragraphs.
+//
+ 
+
+Single line comments may be any of the following:
+
+/* 
+ * VERY important single-line comments look like this. 
+ */
+
+//
+// or like this
+//
+
+/* Most single-line comments look like this. */
+
+// or like this
+
+
+9. Comments at the start of functions
+Function declarations should have comments immediately preceding 
+it that describe what the function does and how to use it.
+
+/* 
+ * All major routines should have a comment briefly describing what 
+ * they do.  The comment before the "main" routine should describe 
+ * what the program does. The comment should use the format of
+ * multi-line or VERY important comment shown above.
+ */
+int main(int argc, char *argv[])
+{
+}
+
+
+10. Grammar
+Pay attention to punctuation, spelling, and grammar; it is easier to read well-written comments 
+than badly written ones. 
+
+Comments should be as readable as narrative text, with proper capitalization and punctuation. 
+In many cases, complete sentences are more readable than sentence fragments. Shorter comments, 
+such as comments at the end of a line of code, can sometimes be less formal, but you should be 
+consistent with your style. 
+
+Although it can be frustrating to have a code reviewer point out that you are using a comma 
+when you should be using a semicolon, it is very important that source code maintain a high 
+level of clarity and readability. Proper punctuation, spelling, and grammar help with that goal. 
+
+
+11. Formatting 
+Coding style and formatting are pretty arbitrary, but a project is much easier to follow if everyone 
+uses the same style. Individuals may not agree with every aspect of the formatting rules, and some of 
+the rules may take some getting used to, but it is important that all project contributors follow the 
+style rules so that they can all read and understand everyone's code easily. 
+
+Line Length:
+Each line of text in your code should be at most 80 characters long. 
+
+We recognize that this rule is controversial, but so much existing code already adheres to it, 
+and we feel that consistency is important. 
+
+Those who favor this rule argue that it is rude to force them to resize their windows and there is 
+no need for anything longer. Some folks are used to having several code windows side-by-side, and 
+thus don't have room to widen their windows in any case. People set up their work environment assuming 
+a particular maximum window width, and 80 columns has been the traditional standard. Why change it? 
+
+Proponents of change argue that a wider line can make code more readable. The 80-column limit is an 
+hidebound throwback to 1960s mainframes; modern equipment has wide screens that can easily show longer lines. 
+
+80 characters is the maximum. 
+
+ 
+12. Spaces vs. Tabs 
+Use only spaces, and indent 4 spaces at a time. 
+
+We use spaces for indentation. Do not use tabs in your code. You should set your editor to emit 
+spaces when you hit the tab key. 
+
+
+13. function declarations 
+
+Return type on the line before the function name. Parameters on the same line 
+as the function name if they fit. Wrap parameter lists which do not fit on 
+a single line as you would wrap arguments in a function call. 
+
+Functions look like this: 
+
+ReturnType 
+FunctionName(Type par_name1, Type par_name2) 
+{  
+    DoSomething();
+    ...
+}  
+
+If you have too much text to fit on one line: 
+
+ReturnType 
+ReallyLongFunctionName(Type par_name1, Type par_name2, 
+                       Type par_name3) {  
+    DoSomething();
+    ...
+} 
+
+
+14. Conditionals 
+In an if statement, including its optional else if and else clauses, put one 
+space between the if and the opening parenthesis, and between the closing 
+parenthesis and the curly brace (if any), but no spaces between the 
+parentheses and the condition or initializer. If the optional initializer 
+is present, put a space or newline after the semicolon, but not before. 
+
+if(condition) {      // Bad - space missing after IF
+if ( condition ) {   // Bad - space between the parentheses and the condition
+if (condition){      // Bad - space missing before {
+if(condition){       // Doubly bad
+
+if (int a = f();a == 10) {   // Bad - space missing after the semicolon  
+
+Use curly braces for the controlled statements following if, else if and else.
+Break the line immediately after the opening brace, and immediately before 
+the closing brace. A subsequent else, if any, appears on the same line as the 
+preceding closing brace, separated by a space. 
+
+
+if (condition) {   // no spaces inside parentheses, space before brace
+    DoOneThing();    // four space indent
+    DoAnotherThing();
+} else if (int a = f(); a != 3) {  // closing brace on new line, else on same line
+    DoAThirdThing(a);
+} else {
+    DoNothing();
+}
+
+
+15. Switch Statements 
+Switch statements may use braces for blocks. Case blocks in switch statements can have curly 
+braces or not, depending on 
+your preference.
+
+If not conditional on an enumerated value, switch statements should always 
+have a default case (in the case of an enumerated value, the compiler will 
+warn you if any values are not handled). If the default case should never 
+execute, treat this as an error. Indentation should be as follows:  
+
+switch (var) {
+    case 0:  // 4 space indent
+        ...  // 8 space indent
+        break;
+    case 1:
+        ...
+        break;
+    default:
+        assert(false);
+}
+
+
+16. single-statement loops. 
+Braces are required for single-statement loops.
+
+for (int i = 0; i < kSomeNumber; ++i)  // WRONG
+  printf("I love you\n");
+
+for (int i = 0; i < kSomeNumber; ++i) {  // RIGHT
+  printf("I take it back\n");
+}
+
+
+17. Return Values 
+Do not needlessly surround the return expression with parentheses. 
+
+Use parentheses in return expr; only where you would use them in x = expr;. 
+
+return result;   // No parentheses in the simple case.
+// Parentheses OK to make a complex expression more readable.
+return (some_long_condition &&
+        another_condition);
+
+return (value);                // You wouldn't write var = (value);
+return(result); 
+
+
+18. Function prototypes 
+Function prototypes for private functions (i.e., functions not used elsewhere) 
+go at the top of the first source module. In the kernel, private functions 
+do not require a prototype as long as they are defined before they are used. 
+In userspace, functions local to one source module should be declared 'static'.
+ This should not be done in the kernel since it makes it impossible to use 
+the kernel debugger. 
+
+Functions used from other files are prototyped in the relevant include file. 
+
+Functions that are used locally in more than one module go into a separate 
+header file
+
+Prototypes should not have variable names associated with the types; i.e., 
+
+voidfunction(int);  
+
+not:  
+
+voidfunction(int a); 
+
+
+19. unsigned ints 
+When defining unsigned integers use 'unsigned int' rather than 
+just 'unsigned'; the latter has been a source of confusion in the past. 
+
+ 
+20. Exit code
+Exits should be 0 on success, or non-zero for errors. 
+
+/* 
+ * Avoid obvious comments such as 
+ * "Exit 0 on success." 
+ */
+exit(0); 
+
+ 
+21. Register
+Use of the 'register' specifier is discouraged in new code. Optimizing 
+compilers such as gcc can generally do a better job of choosing which 
+variables to place in registers to improve code performance. 
+
+ 
+
